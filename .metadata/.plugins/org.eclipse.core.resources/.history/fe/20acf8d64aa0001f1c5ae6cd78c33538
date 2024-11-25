@@ -1,0 +1,31 @@
+package pr3;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class pr3test {
+
+	private final pr3 app = new pr3();
+	@Test
+    void testExtractProductPrice() {
+        // Проверим корректность извлечения цены из строки
+        String product = "Наушники - 200 руб.";
+        int expectedPrice = 200;
+        int actualPrice = app.extractProductPrice(product);
+        // Ожидаемое значение идет первым, затем реальное
+        assertEquals(expectedPrice, actualPrice, "Цена должна быть 200 руб.");
+    }
+
+    @Test
+    void testCalculateTotalCost_WithCourier() {
+        // Проверим, что цена с курьером рассчитывается правильно
+        String product = "Сигареты - 100 руб.";
+        boolean isCourier = true;  // выбрали курьера
+        int expectedCost = 100 + 50;  // цена товара + стоимость доставки
+        int actualCost = app.calculateTotalCost(product, isCourier);
+        // Ожидаемое значение идет первым, затем реальное
+        assertEquals(expectedCost, actualCost, "Общая стоимость с курьером должна быть 150 руб.");
+    }
+
+}
